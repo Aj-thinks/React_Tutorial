@@ -3,13 +3,15 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 
 
-import ModalBox from './pages/ModalBox';
+//import ModalBox from './pages/ModalBox';
+import MainMenu from './myapi/MainMenu';
 
 
 function App() {
   return (
     <div >
-      <ModalBox />
+      {/*<ModalBox />*/}
+      <MainMenu />
     </div>
   );
 }
