@@ -8,6 +8,8 @@ import Books from './Books'
 import Arthematic from '../pages/Arithmatic'
 import ModalBox from '../pages/ModalBox'
 import LoadNews from './LoadNews'
+import TodoList from './TodoList'
+import MyProfile from './MyProfile'
 
 
 export default function MainMenu() {
@@ -22,6 +24,9 @@ export default function MainMenu() {
                         <Route path='calc' element={<Arthematic />} />
                         <Route path='modal' element={<ModalBox />} />
                         <Route path='loadnews' element={<LoadNews />} />
+                        <Route path='todolist' element={<TodoList />} />
+                        <Route path='myprofile' element={<MyProfile />} />
+
 
 
                     </Route>
@@ -58,6 +63,14 @@ function MenuItems() {
 
                 <Menu.Item as={Link} to='/loadnews'>
                     Load News
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/todolist'>
+                    Todo List
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/myprofile'>
+                    My Profile
                 </Menu.Item>
 
             </Menu>
