@@ -10,6 +10,7 @@ import ModalBox from '../pages/ModalBox'
 import LoadNews from './LoadNews'
 import TodoList from './TodoList'
 import MyProfile from './MyProfile'
+import GetNews from './GetNews'
 
 
 export default function MainMenu() {
@@ -26,6 +27,7 @@ export default function MainMenu() {
                         <Route path='loadnews' element={<LoadNews />} />
                         <Route path='todolist' element={<TodoList />} />
                         <Route path='myprofile' element={<MyProfile />} />
+                        <Route path='getnews' element={<GetNews />} />
 
 
 
@@ -71,6 +73,10 @@ function MenuItems() {
 
                 <Menu.Item as={Link} to='/myprofile'>
                     My Profile
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/getnews'>
+                    Get News
                 </Menu.Item>
 
             </Menu>
