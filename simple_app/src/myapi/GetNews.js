@@ -77,7 +77,7 @@ export default function GetNews() {
                                 <Card.Content>
                                     <Card.Header>{item.title.rendered}</Card.Header>
                                 </Card.Content>
-
+  
                                 <Card.Content extra>
                                     <a>
                                         <Icon name='calendar alternate outline' />

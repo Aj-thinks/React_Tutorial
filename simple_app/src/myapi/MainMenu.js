@@ -11,6 +11,10 @@ import LoadNews from './LoadNews'
 import TodoList from './TodoList'
 import MyProfile from './MyProfile'
 import GetNews from './GetNews'
+import StudentsList from '../props/StudentsList'
+import TodoListProps from '../props/TodoListProps'
+import TodoListEditable from './TodoListEditable'
+import TodoListMultiField from '../props/TodoListMultiField'
 
 
 export default function MainMenu() {
@@ -28,6 +32,10 @@ export default function MainMenu() {
                         <Route path='todolist' element={<TodoList />} />
                         <Route path='myprofile' element={<MyProfile />} />
                         <Route path='getnews' element={<GetNews />} />
+                        <Route path='studentslist' element={<StudentsList />} />
+                        <Route path='todolistprops' element={<TodoListProps />} />
+                        <Route path="TodoListEditable" element={<TodoListEditable />} />
+                        <Route path="todolistmultifield" element={<TodoListMultiField />} />
 
 
 
@@ -77,6 +85,22 @@ function MenuItems() {
 
                 <Menu.Item as={Link} to='/getnews'>
                     Get News
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/studentslist'>
+                    students list
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/todolistprops'>
+                    todo list props
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/TodoListEditable'>
+                    TodoListEditable
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/todolistmultifield'>
+                    Multilist Edit
                 </Menu.Item>
 
             </Menu>
