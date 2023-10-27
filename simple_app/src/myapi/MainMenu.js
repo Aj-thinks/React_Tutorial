@@ -15,6 +15,7 @@ import StudentsList from '../props/StudentsList'
 import TodoListProps from '../props/TodoListProps'
 import TodoListEditable from './TodoListEditable'
 import TodoListMultiField from '../props/TodoListMultiField'
+import DOM from '../props/DOM'
 
 
 export default function MainMenu() {
@@ -36,6 +37,7 @@ export default function MainMenu() {
                         <Route path='todolistprops' element={<TodoListProps />} />
                         <Route path="TodoListEditable" element={<TodoListEditable />} />
                         <Route path="todolistmultifield" element={<TodoListMultiField />} />
+                        <Route path="dom" element={<DOM />} />
 
 
 
@@ -101,6 +103,10 @@ function MenuItems() {
 
                 <Menu.Item as={Link} to='/todolistmultifield'>
                     Multilist Edit
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/dom'>
+                    DOM
                 </Menu.Item>
 
             </Menu>
