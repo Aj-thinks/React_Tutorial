@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 export default function MyProfile() {
+
+    const { userid } = useParams()
 
     let x = ''
     x = localStorage.getItem('User')
@@ -12,7 +15,6 @@ export default function MyProfile() {
     }
 
 
-
     return (
         <div>
             <input
@@ -22,6 +24,9 @@ export default function MyProfile() {
                 required
             />
             <button onClick={handleSave}>Save Changes</button>
+            <hr />
+
+            <h1> This is the user id passed in the url: {userid} </h1>
         </div>
     )
 }

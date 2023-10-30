@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
@@ -16,9 +16,65 @@ import TodoListProps from '../props/TodoListProps'
 import TodoListEditable from './TodoListEditable'
 import TodoListMultiField from '../props/TodoListMultiField'
 import DOM from '../props/DOM'
+import Nested from '../advanced/Nested'
 
+
+
+// To use the createContext hook.
+export const UserContext = createContext('defaultvalue')
+export const ThemeContext = createContext('')
 
 export default function MainMenu() {
+    const [user, setUser] = useState('Ajay')
+    const [theme, setTheme] = useState('light')
+
+    return (
+        <div>
+            <UserContext.Provider value={{ user, setUser, age: 25 }} >  {/* Wrap up all the components within the usercontext in order to acess in all pages */}
+
+                <ThemeContext.Provider value={{ theme, setTheme }}>
+
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path='/' element={<MenuItems />}>
+                                <Route index element={<HomePage />} />
+                                <Route path='about' element={<AboutPage />} />
+                                <Route path='books' element={<Books />} />
+                                <Route path='calc' element={<Arthematic />} />
+                                <Route path='modal' element={<ModalBox />} />
+                                <Route path='loadnews' element={<LoadNews />} />
+                                <Route path='todolist' element={<TodoList />} />
+                                <Route path='myprofile/:userid' element={<MyProfile />} />
+                                <Route path='getnews' element={<GetNews />} />
+                                <Route path='studentslist/:id' element={<StudentsList />} />
+                                <Route path='studentslist/:id/:name' element={<StudentsList />} />
+                                <Route path='todolistprops' element={<TodoListProps />} />
+                                <Route path="TodoListEditable" element={<TodoListEditable />} />
+                                <Route path="todolistmultifield" element={<TodoListMultiField />} />
+                                <Route path="dom" element={<DOM />} />
+                                <Route path="nested" element={<Nested />} />
+
+                            </Route>
+                        </Routes>
+                    </BrowserRouter>
+
+                </ThemeContext.Provider>
+
+            </UserContext.Provider>
+
+        </div>
+    )
+}
+
+
+
+
+
+
+
+//without using the create context
+
+/* export default function MainMenu() {
     return (
         <div>
             <BrowserRouter>
@@ -38,6 +94,7 @@ export default function MainMenu() {
                         <Route path="TodoListEditable" element={<TodoListEditable />} />
                         <Route path="todolistmultifield" element={<TodoListMultiField />} />
                         <Route path="dom" element={<DOM />} />
+                        <Route path="nested" element={<Nested />} />
 
 
 
@@ -46,7 +103,7 @@ export default function MainMenu() {
             </BrowserRouter>
         </div>
     )
-}
+} */
 
 
 function MenuItems() {
@@ -85,6 +142,7 @@ function MenuItems() {
                     My Profile
                 </Menu.Item>
 
+
                 <Menu.Item as={Link} to='/getnews'>
                     Get News
                 </Menu.Item>
@@ -108,6 +166,11 @@ function MenuItems() {
                 <Menu.Item as={Link} to='/dom'>
                     DOM
                 </Menu.Item>
+
+                <Menu.Item as={Link} to='/nested'>
+                    Nested
+                </Menu.Item>
+
 
             </Menu>
             <Outlet />
