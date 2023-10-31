@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 
 import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
@@ -20,6 +20,18 @@ import Nested from '../advanced/Nested'
 
 
 
+import { onAuthStateChanged, onIdTokenChanged } from 'firebase/auth'
+
+import OTPLogin from '../fb/OTPLogin'
+import { auth } from '../fb/firebase'
+
+
+
+
+
+
+
+
 // To use the createContext hook.
 export const UserContext = createContext('defaultvalue')
 export const ThemeContext = createContext('')
@@ -27,6 +39,20 @@ export const ThemeContext = createContext('')
 export default function MainMenu() {
     const [user, setUser] = useState('Ajay')
     const [theme, setTheme] = useState('light')
+
+
+    useEffect(() => {
+        const unsubscribeAuthState = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+        const unsubscribeIdToken = onIdTokenChanged(auth, (user) => {
+            setUser(user);
+        });
+        return () => {
+            unsubscribeAuthState();
+            unsubscribeIdToken();
+        };
+    }, [auth]);
 
     return (
         <div>
@@ -53,6 +79,8 @@ export default function MainMenu() {
                                 <Route path="todolistmultifield" element={<TodoListMultiField />} />
                                 <Route path="dom" element={<DOM />} />
                                 <Route path="nested" element={<Nested />} />
+
+                                <Route path="account" element={<OTPLogin user={user} setUser={setUser} />} />
 
                             </Route>
                         </Routes>
@@ -169,6 +197,10 @@ function MenuItems() {
 
                 <Menu.Item as={Link} to='/nested'>
                     Nested
+                </Menu.Item>
+
+                <Menu.Item as={Link} to='/account'>
+                    Account
                 </Menu.Item>
 
 
